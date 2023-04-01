@@ -1,0 +1,32 @@
+syntax = "v1"
+
+type RegisterReq {
+	Username string `form:"username"`
+	Password string `form:"password"`
+}
+
+type RegisterRes {
+	Code int32  `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+type LoginReq {
+	Username string `form:"username"`
+	Password string `form:"password"`
+}
+
+type LoginRes {
+	Code int32  `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+@server(
+	prefix:api
+)
+service User {
+	@handler Register
+	post /register (RegisterReq) returns (RegisterRes)
+	
+	@handler Login
+	post /login (LoginReq) returns (LoginRes)
+}
